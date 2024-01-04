@@ -7,7 +7,7 @@ alreadyMembers = [f.split('.')[0] for f in listdir(fr"{getcwd()}/qrcodes")]
 with open("delegatesInfo.csv", 'r') as f:
     for delegate in f:
         data = delegate.strip().split(',')
-        name, email = data[0].rstrip(), data[-1].split('@')[0]
+        name, email = data[0].rstrip(), data[-1]
         
         # no need to create QR for already-members
         if name in alreadyMembers:
