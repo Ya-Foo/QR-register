@@ -25,6 +25,9 @@ class WebcamApp:
     def update_Webcam(self):
         returnValue, frame = self.video_capture.read()
         frame = cv2.resize(frame, (screen_width//2, screen_height//2))
+        
+        # If using front came, uncomment
+        # frame = cv2.flip(frame, 1)
         if returnValue:
             returnQR, decoded_info, points, _ = self.qcd.detectAndDecodeMulti(frame)
             
