@@ -154,7 +154,6 @@ cython_debug/
 
 
 # Not gonna publicise this
-qrcodes/
 /delegatesInfo.csv
 /token.json
 /credentials.json
