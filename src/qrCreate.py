@@ -19,5 +19,5 @@ with open("delegatesInfo.csv", 'r') as f:
         img.save(
             fr'qrcodes/{name}.png',
             scale=10,
-            border=0,
+            border=1,
         )

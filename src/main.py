@@ -58,15 +58,23 @@ app = WebcamApp(root)
 
 root.mainloop()
 
-SPREADSHEET_ID = "1UT_GerjzJCv7Bu_MnEMHZUr533mF3xe0W0rMiUlHnq4"
+
+# ============================================================= #
+# ======================== Update data ======================== #
+# ============================================================= #
+SPREADSHEET_ID = "1PnVaAUNO2wG6fS9klsNLNhpuWz4pZ2MYPxKfCx0x2Zk"
 TARGET_COLUMN = "G"
+START_ROW = 3
+MEMBER_EMAILS_COLUMN = "C"
+
+MEMBER_EMAILS = f"{MEMBER_EMAILS_COLUMN}{str(START_ROW)}:{MEMBER_EMAILS_COLUMN}1000"
+
 creds = utl.auth()
 
-members = utl.get_values(creds, SPREADSHEET_ID, "C3:C1000")
+members = utl.get_values(creds, SPREADSHEET_ID, MEMBER_EMAILS)
 
-start_row = 3
 for i in members["values"]:
-    CELL = TARGET_COLUMN + str(start_row)
+    cell = TARGET_COLUMN + str(START_ROW)
     if i[0] in scanned:
-        utl.write_values(creds, SPREADSHEET_ID, CELL, 'USER_ENTERED')
-    start_row += 1
+        utl.write_values(creds, SPREADSHEET_ID, cell, 'USER_ENTERED')
+    START_ROW += 1
