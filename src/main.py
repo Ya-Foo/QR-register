@@ -17,16 +17,25 @@ class WebcamApp:
         
         # Display
         root.state('zoomed')
-        self.canvas = tk.Canvas(window, width=screen_width//2, height=screen_height//2)
+        self.canvas = tk.Canvas(window, width=screen_width//3*2, height=screen_height//3*2)
         self.canvas.pack()
-        self.text = "Registered user: "
-        tk.Label(window, self.text).pack()
+        
+        tk.Label(window, text="REGISTERED USER",font=("Arial bold", 25), pady=50).pack()
+        self.confirm_text = ""
+        self.info = tk.Label(
+            master=self.window, 
+            text=self.confirm_text, 
+            font=("Arial", 25),
+            pady=10,
+            fg="green"
+        )
+        self.info.pack()
         
         self.update_Webcam()
         
     def update_Webcam(self):
         returnValue, frame = self.video_capture.read()
-        frame = cv2.resize(frame, (screen_width//2, screen_height//2))
+        frame = cv2.resize(frame, (screen_width//3*2, screen_height//3*2))
         
         # If using front cam, uncomment below:
         # frame = cv2.flip(frame, 1)
@@ -36,7 +45,7 @@ class WebcamApp:
             if returnQR:
                 for data, p in zip(decoded_info, points):
                     if data:
-                        self.text = f"Registered user: {data}"
+                        self.info.config(text=data)
                         if data not in scanned:
                             scanned.append(data)
                         
@@ -65,7 +74,7 @@ root.mainloop()
 # ============================================================= #
 # ======================== Update data ======================== #
 # ============================================================= #
-SPREADSHEET_ID = "1PnVaAUNO2wG6fS9klsNLNhpuWz4pZ2MYPxKfCx0x2Zk"
+SPREADSHEET_ID = "1UT_GerjzJCv7Bu_MnEMHZUr533mF3xe0W0rMiUlHnq4"
 TARGET_COLUMN = "G"
 START_ROW = 3
 MEMBER_EMAILS_COLUMN = "C"
