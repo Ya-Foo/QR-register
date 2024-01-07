@@ -21,8 +21,9 @@
 ### Prerequisites
 
 - OAuth credentials - obtain from [me](ghuynh2@bisvietnam.com)
-  > [!CAUTION]  
-  > Sharing the credentials will allow potential malicious activites to be performed under your account. So please keep my credentials secret :sob::sob::sob:
+
+> [!CAUTION]  
+> Sharing the credentials will allow potential malicious activites to be performed under your account. So please keep my credentials secret :sob::sob::sob:
 
 - Virtual Environment
   
@@ -51,8 +52,9 @@ python -m pip install -r requirements.txt
 ### Creating QR codes
 
 1. From your spreadsheets app, download the list of delegates name and their email as `delegatesInfo.csv`
-    > [!IMPORTANT]  
-    > As long as the names are in the first column and the emails are in the last column, then the program will successfully import the data. Anything in the middle will be ignored.  
+
+> [!IMPORTANT]  
+> As long as the names are in the first column and the emails are in the last column, then the program will successfully import the data. Anything in the middle will be ignored.  
 
 2. Move the file into `QR-register/`
 
