@@ -33,7 +33,8 @@ Just simply download this repo then open PowerShell in the file directory and in
 ### Creating QR codes
 
 1. From your spreadsheets app, download the list of delegates name and their email as a `.csv` file
-    > [!IMPORTANT] As long as the names are in the first column and the emails are in the last column, then the program will successfully import the data
+    > [!IMPORTANT]  
+    > As long as the names are in the first column and the emails are in the last column, then the program will successfully import the data
 
 2. Run `qrCreate.py`
 
