@@ -44,3 +44,4 @@ venv.bak/
 /delegatesInfo.csv
 /token.json
 /credentials.json
+*.png
