@@ -1,6 +1,7 @@
 import tkinter as tk
 import utilities as utl
 import cv2
+import json
 from PIL import Image, ImageTk
 
 
@@ -10,17 +11,29 @@ class WebcamApp:
         self.window.title("QR Registration")
         
         # OpenCV setup
-        camera_id = 1  # 0 for front cam, 1 for back cam
+        with open("src/config.json", "r") as f:
+            self.camera_id = json.loads(f.read())["camera_id"]
+            
         self.qcd = cv2.QRCodeDetector()
-        self.video_capture = cv2.VideoCapture(camera_id)
+        self.video_capture = cv2.VideoCapture(self.camera_id)
         self.currentImage = None
         
         # Display
         root.state('zoomed')
-        self.canvas = tk.Canvas(window, width=screen_width//3*2, height=screen_height//3*2)
+        self.canvas = tk.Canvas(
+            window, 
+            width=screen_width//3*2, 
+            height=screen_height//3*2
+        )
         self.canvas.pack()
         
-        tk.Label(window, text="REGISTERED USER",font=("Arial bold", 25), pady=50).pack()
+        tk.Label(
+            window, 
+            text="REGISTERED USER",
+            font=("Arial bold", 25), 
+            pady=50
+        ).pack()
+        
         self.confirm_text = ""
         self.info = tk.Label(
             master=self.window, 
@@ -37,8 +50,10 @@ class WebcamApp:
         returnValue, frame = self.video_capture.read()
         frame = cv2.resize(frame, (screen_width//3*2, screen_height//3*2))
         
-        # If using front cam, uncomment below:
-        # frame = cv2.flip(frame, 1)
+        # Flip image if using webcam
+        if not self.camera_id:
+            frame = cv2.flip(frame, 1)
+            
         if returnValue:
             returnQR, decoded_info, points, _ = self.qcd.detectAndDecodeMulti(frame)
             
@@ -74,19 +89,21 @@ root.mainloop()
 # ============================================================= #
 # ======================== Update data ======================== #
 # ============================================================= #
-SPREADSHEET_ID = "1UT_GerjzJCv7Bu_MnEMHZUr533mF3xe0W0rMiUlHnq4"
-TARGET_COLUMN = "G"
-START_ROW = 3
-MEMBER_EMAILS_COLUMN = "C"
+with open("src/config.json", "r") as f:
+    data = json.loads(f.read())
+    SPREADSHEET_ID = data["sheets_id"]
+    TARGET_COL = data["register_column"]
+    EMAILS_COL = data["mail_column"]
+    START_ROW = data["start_row"]
 
-MEMBER_EMAILS = f"{MEMBER_EMAILS_COLUMN}{str(START_ROW)}:{MEMBER_EMAILS_COLUMN}1000"
+EMAILS = f"{EMAILS_COL}{str(START_ROW)}:{EMAILS_COL}1000"
 
 creds = utl.auth()
 
-members = utl.get_values(creds, SPREADSHEET_ID, MEMBER_EMAILS)
+members = utl.get_values(creds, SPREADSHEET_ID, EMAILS)
 
 for i in members["values"]:
-    cell = TARGET_COLUMN + str(START_ROW)
+    cell = TARGET_COL + str(START_ROW)
     if i[0] in scanned:
         utl.write_values(creds, SPREADSHEET_ID, cell, 'USER_ENTERED')
     START_ROW += 1
