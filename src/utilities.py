@@ -41,7 +41,7 @@ def get_values(creds, spreadsheet_id, range_name):
             .execute()
         )
         rows = result.get("values", [])
-        print(f"{len(rows)} rows retrieved")
+        print(f"Finding a total of {len(rows)} members")
         return result
     
     except HttpError as error:
@@ -69,7 +69,6 @@ def write_values(creds, spreadsheet_id, range_name, value_input_option):
             )
             .execute()
         )
-        print(f"{result.get('updatedCells')} cells updated.")
         return result
     
     except HttpError as error:
