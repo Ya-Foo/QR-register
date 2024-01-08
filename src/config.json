@@ -1,7 +1,8 @@
 {
-    "camera_id": 1,
-    "sheets_id": "1UT_GerjzJCv7Bu_MnEMHZUr533mF3xe0W0rMiUlHnq4",
-    "register_column": "G",
-    "mail_column": "C",
-    "start_row": 3
+    "camera_id": 0,
+    "sheets_id": "spreadsheet ID",
+    "page": "page name",
+    "register_column": "A",
+    "identifier_column": "A",
+    "start_row": 1
 }

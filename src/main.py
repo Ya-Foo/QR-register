@@ -92,23 +92,27 @@ root.mainloop()
 with open("src/config.json", "r") as f:
     data = json.loads(f.read())
     SPREADSHEET_ID = data["sheets_id"]
+    PAGE = data["page"]
     TARGET_COL = data["register_column"]
-    EMAILS_COL = data["mail_column"]
+    IDENTIFIER_COL = data["identifier_column"]
     START_ROW = data["start_row"]
 
-EMAILS = f"{EMAILS_COL}{str(START_ROW)}:{EMAILS_COL}1000"
+IDENTIFIERS = f"'{PAGE}'!{IDENTIFIER_COL}{str(START_ROW)}:{IDENTIFIER_COL}1000"
 
 creds = utl.auth()
 
-members = utl.get_values(creds, SPREADSHEET_ID, EMAILS)["values"]
+members = utl.get_values(creds, SPREADSHEET_ID, IDENTIFIERS)["values"]
 registered = len(scanned)
 
 print(f"{registered} were registered\n")
 index = 1
 for i in members:
-    cell = TARGET_COL + str(START_ROW)
+    cell = f"'{PAGE}'!{TARGET_COL}{str(START_ROW)}"
+    
+    # If registered, then mark attendance
     if i[0] in scanned:
         utl.write_values(creds, SPREADSHEET_ID, cell, 'USER_ENTERED')
         print(f"{index}/{registered} cells updated")
         index += 1
+        
     START_ROW += 1
