@@ -7,10 +7,13 @@
   - [Installation](#installation)
 - [Usage](#usage)
   - [File formatting](#file-formatting)
-    - [Google Sheets](#google-sheets)
-    - [CSV](#csv)
-  - [Creating QR codes](#creating-qr-codes)
+    - [Attendance sheet](#attendance-sheet)
+    - [Delegate's info sheet](#delegates-info-sheet)
   - [Initial configuration](#initial-configuration)
+    - [Global values](#global-values)
+    - [Attendance](#attendance)
+    - [Delegates' info](#delegates-info)
+  - [Creating QR codes](#creating-qr-codes)
   - [Scanning the QR](#scanning-the-qr)
 - [Troubleshooting](#troubleshooting)
 - [Credits](#credits)
@@ -60,7 +63,7 @@ python -m pip install -r requirements.txt
 
 ### File formatting
 
-#### Google Sheets
+#### Attendance sheet
 
 [Example](https://docs.google.com/spreadsheets/d/1UT_GerjzJCv7Bu_MnEMHZUr533mF3xe0W0rMiUlHnq4/edit#gid=650366501)
 
@@ -68,52 +71,86 @@ python -m pip install -r requirements.txt
 - The delegates' identifier and their attendance cell should locate on the same row.
 - No merged cells should be in the delegates' row.
 
-#### CSV
+#### Delegate's info sheet
 
-```csv
-name, [...], identifier
-```
-
-- Name always be in the first column.
-- Identifier always be in last column.
-- Anything can be put in between these column as they will be ignored.
-
-### Creating QR codes
-
-1. From your spreadsheets app, download the list of delegates name and their identifier as `delegatesInfo.csv`.
-
-2. Move the file into `QR-register/`.
-
-3. Run `src/qrCreate.py`.
-
-4. Delete `qrcodes/a.txt` file.
+- Name always be in the first column (A).
+- Identifier always be in second column (B).
+- No merged cells should be in the delegates' row.
+- Anything can be put after these column as they will be ignored.
 
 ### Initial configuration
 
-Find `src/config.json` which contains all the configuration of the program.
+Find `src/config.json` which contains all the configuration of the program.  
 
-| Value             | Meaning                                                  |
+The examples will be based on this [Google Sheets](https://docs.google.com/spreadsheets/d/1UT_GerjzJCv7Bu_MnEMHZUr533mF3xe0W0rMiUlHnq4/edit#gid=0)
+
+#### Global values
+
+The first two attributes of `config.json`
+
+| Attribute         | Meaning                                                  |
 |-------------------|----------------------------------------------------------|
 | camera_id         | 0 (default) for webcam or 1 for back cam                 |
 | sheets_id         | The ID of the Google Sheets used for attendance          |
+
+To use the front cam and access the example Google Sheets, the configuration file should look as follows:
+
+```json
+{
+  "camera_id": 0,
+  "sheets_id": "1UT_GerjzJCv7Bu_MnEMHZUr533mF3xe0W0rMiUlHnq4",
+}
+```
+
+#### Attendance
+
+The attributes within `"attendance": {...}`
+
+| Attribute         | Meaning                                                  |
+|-------------------|----------------------------------------------------------|
 | page              | The name of the sheet where the attendance is located    |
 | register_column   | The column in which attendance will be marked            |
 | identifier_column | The column in which the delegates' identifier are placed |
 | start_row         | The row containing the first delegate                    |
 
 Example:
-To configure the program for registrating Room 1 in this [Google Sheets](https://docs.google.com/spreadsheets/d/1UT_GerjzJCv7Bu_MnEMHZUr533mF3xe0W0rMiUlHnq4/edit#gid=0), the configuration file should look as follows:
+To configure the program for registrating Room 1 in the example, the configuration file should look as follows:
 
 ```json
-{
-  "camera_id": 1,
-  "sheets_id": "1UT_GerjzJCv7Bu_MnEMHZUr533mF3xe0W0rMiUlHnq4",
+"attendance": {
   "page": "Room 1",
   "register_column": "G",
   "identifier_column": "C",
   "start_row": 3
 }
 ```
+
+#### Delegates' info
+
+The attributes within `"info": {...}`
+
+| Attribute         | Meaning                                                  |
+|-------------------|----------------------------------------------------------|
+| page              | The name of the sheet where the info is located          |
+| start_row         | The row containing the first delegate                    |
+
+Example:
+To configure the program to extract data in the example, the configuration file should look as follows:
+
+```json
+"info": {
+  "page": "delegatesInfo",
+  "start_row": 2
+}
+```
+
+### Creating QR codes
+
+1. Run `src/qrCreate.py`.
+   
+2. Wait for it to finish.
+
+3. Delete `qrcodes/a.txt` file.
 
 ### Scanning the QR
 
