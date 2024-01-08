@@ -164,6 +164,7 @@ To configure the program to extract data in the example, the configuration file 
 3. If it is your first time running, a Google sign-in prompt may open. Make sure to sign in with the account that has access to your attendance spreadsheet.
 
 4. As one scan their QR, a green frame will be drawn around it if login successful as well as their identifier appearing in green underneath.
+  ![successful scan](images/scanSuccess.jpg)
 
 5. Once all the delegates have registered, close the window then wait for the program to sync the data with the Google Sheets.
 
