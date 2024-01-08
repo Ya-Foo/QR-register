@@ -41,8 +41,7 @@ def get_values(creds, spreadsheet_id, range_name):
             .execute()
         )
         rows = result.get("values", [])
-        print(f"Finding a total of {len(rows)} members")
-        return result
+        return rows
     
     except HttpError as error:
         print(f"An error occurred: {error}")

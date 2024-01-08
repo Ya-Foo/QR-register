@@ -92,27 +92,36 @@ root.mainloop()
 with open("src/config.json", "r") as f:
     data = json.loads(f.read())
     SPREADSHEET_ID = data["sheets_id"]
-    PAGE = data["page"]
-    TARGET_COL = data["register_column"]
-    IDENTIFIER_COL = data["identifier_column"]
-    START_ROW = data["start_row"]
+    
+    SETTINGS = data["attendance"]
+    PAGE = SETTINGS["page"]
+    TARGET_COL = SETTINGS["register_column"]
+    IDENTIFIER_COL = SETTINGS["identifier_column"]
+    START_ROW = SETTINGS["start_row"]
 
 IDENTIFIERS = f"'{PAGE}'!{IDENTIFIER_COL}{str(START_ROW)}:{IDENTIFIER_COL}1000"
 
 creds = utl.auth()
 
-members = utl.get_values(creds, SPREADSHEET_ID, IDENTIFIERS)["values"]
+members = utl.get_values(creds, SPREADSHEET_ID, IDENTIFIERS)
 registered = len(scanned)
 
-print(f"{registered} were registered\n")
-index = 1
-for i in members:
-    cell = f"'{PAGE}'!{TARGET_COL}{str(START_ROW)}"
-    
-    # If registered, then mark attendance
-    if i[0] in scanned:
-        utl.write_values(creds, SPREADSHEET_ID, cell, 'USER_ENTERED')
-        print(f"{index}/{registered} cells updated")
-        index += 1
+if registered:
+    print(f"Registering {registered} members...")
+
+    index = 1
+    for i in members:
+        cell = f"'{PAGE}'!{TARGET_COL}{str(START_ROW)}"
         
-    START_ROW += 1
+        # If registered, then mark attendance
+        if i[0] in scanned:
+            utl.write_values(creds, SPREADSHEET_ID, cell, 'USER_ENTERED')
+            
+            print(f"\t{index}/{registered} cells updated")
+            index += 1
+            
+        START_ROW += 1
+else:
+    print("No one attended :(")
+
+print("\nProcess finished")

@@ -41,7 +41,6 @@ venv.bak/
 
 
 # Not gonna publicise this
-/delegatesInfo.csv
 /token.json
 /credentials.json
 *.png
