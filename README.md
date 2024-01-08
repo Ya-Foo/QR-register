@@ -150,7 +150,7 @@ To configure the program to extract data in the example, the configuration file 
 ### Creating QR codes
 
 1. Run `src/qrCreate.py`.
-   
+
 2. Wait for it to finish.
 
 3. Delete `qrcodes/a.txt` file.
