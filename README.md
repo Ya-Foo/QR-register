@@ -13,6 +13,7 @@
   - [Initial configuration](#initial-configuration)
   - [Scanning the QR](#scanning-the-qr)
 - [Troubleshooting](#troubleshooting)
+- [Credits](#credits)
 
 ## Built with<!-- omit from toc -->
 
@@ -130,3 +131,10 @@ Sign in with the wrong Google Account? Delete the `auth/token.json` then run `sr
 > Again, do not share this token to anyone (same reason as credentials).
 
 QR code not registering? Make sure the QR code is perpendicular to the camera and lighting is neither too dark nor too bright.
+
+## Credits
+
+Program made for BISHCMC MUN club.
+
+Idea proposal: Henry Bui  
+Developer: Gia Phu
