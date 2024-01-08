@@ -31,6 +31,5 @@ venv.bak/
 
 
 # Not gonna publicise this
-/token.json
-/credentials.json
 *.png
+auth/
