@@ -41,11 +41,11 @@ python PATH/TO/PYTHON/file.py
 - OAuth credentials - obtain from me
 
 > [!CAUTION]  
-> Sharing the credentials will allow potential malicious activites to be performed under my account. So please keep my credentials secret :sob::sob::sob:
+> Sharing the credentials will allow potential malicious activites to be performed under my account. So please keep my credentials secret :sob::sob::sob:.
 
 ### Installation
 
-Just simply download this repo then move the `env` into the directory, after that open PowerShell and activate the environment with
+Just simply download this repo then move the `env` into the directory, after that open PowerShell and activate the environment
 
 ```shell
 cd env
@@ -59,6 +59,8 @@ Then install the necessary libraries
 python -m pip install -r requirements.txt
 ```
 
+Finally, move the `credentials.json` into `auth/`
+
 ## Usage
 
 ### File formatting
@@ -67,7 +69,7 @@ python -m pip install -r requirements.txt
 
 [Example](https://docs.google.com/spreadsheets/d/1UT_GerjzJCv7Bu_MnEMHZUr533mF3xe0W0rMiUlHnq4/edit#gid=650366501)
 
-- Every delegate should have their own unique identifier
+- Every delegate should have their own unique identifier.
 - The delegates' identifier and their attendance cell should locate on the same row.
 - No merged cells should be in the delegates' row.
 
@@ -82,17 +84,18 @@ python -m pip install -r requirements.txt
 
 Find `src/config.json` which contains all the configuration of the program.  
 
-The examples will be based on this [Google Sheets](https://docs.google.com/spreadsheets/d/1UT_GerjzJCv7Bu_MnEMHZUr533mF3xe0W0rMiUlHnq4/edit#gid=0)
+The examples will be based on this [Google Sheets](https://docs.google.com/spreadsheets/d/1UT_GerjzJCv7Bu_MnEMHZUr533mF3xe0W0rMiUlHnq4/edit#gid=0).
 
 #### Global values
 
-The first two attributes of `config.json`
+The first two attributes of `config.json`.
 
 | Attribute         | Meaning                                                  |
 |-------------------|----------------------------------------------------------|
 | camera_id         | 0 (default) for webcam or 1 for back cam                 |
 | sheets_id         | The ID of the Google Sheets used for attendance          |
 
+Example:  
 To use the front cam and access the example Google Sheets, the configuration file should look as follows:
 
 ```json
@@ -104,7 +107,7 @@ To use the front cam and access the example Google Sheets, the configuration fil
 
 #### Attendance
 
-The attributes within `"attendance": {...}`
+The attributes within `"attendance": {...}`.
 
 | Attribute         | Meaning                                                  |
 |-------------------|----------------------------------------------------------|
@@ -113,7 +116,7 @@ The attributes within `"attendance": {...}`
 | identifier_column | The column in which the delegates' identifier are placed |
 | start_row         | The row containing the first delegate                    |
 
-Example:
+Example:  
 To configure the program for registrating Room 1 in the example, the configuration file should look as follows:
 
 ```json
@@ -127,14 +130,14 @@ To configure the program for registrating Room 1 in the example, the configurati
 
 #### Delegates' info
 
-The attributes within `"info": {...}`
+The attributes within `"info": {...}`.
 
 | Attribute         | Meaning                                                  |
 |-------------------|----------------------------------------------------------|
 | page              | The name of the sheet where the info is located          |
 | start_row         | The row containing the first delegate                    |
 
-Example:
+Example:  
 To configure the program to extract data in the example, the configuration file should look as follows:
 
 ```json
