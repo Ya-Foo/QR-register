@@ -63,6 +63,8 @@ Finally, move the `credentials.json` into `auth/`
 
 ### File formatting
 
+All examples can be found in this [Google Sheets](https://docs.google.com/spreadsheets/d/1UT_GerjzJCv7Bu_MnEMHZUr533mF3xe0W0rMiUlHnq4/edit#gid=0).
+
 #### Attendance sheet
 
 [Example](https://docs.google.com/spreadsheets/d/1UT_GerjzJCv7Bu_MnEMHZUr533mF3xe0W0rMiUlHnq4/edit#gid=650366501)
@@ -81,8 +83,6 @@ Finally, move the `credentials.json` into `auth/`
 ### Initial configuration
 
 Find `src/config.json` which contains all the configuration of the program.  
-
-The examples will be based on this [Google Sheets](https://docs.google.com/spreadsheets/d/1UT_GerjzJCv7Bu_MnEMHZUr533mF3xe0W0rMiUlHnq4/edit#gid=0).
 
 #### Global values
 
