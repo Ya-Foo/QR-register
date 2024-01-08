@@ -34,4 +34,3 @@ venv.bak/
 /token.json
 /credentials.json
 *.png
-auth/
