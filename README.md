@@ -41,11 +41,11 @@ python PATH/TO/PYTHON/file.py
 - OAuth credentials - obtain from me
 
 > [!CAUTION]  
-> Sharing the credentials will allow potential malicious activites to be performed under my account. So please keep my credentials secret :sob::sob::sob:.
+> Sharing the credentials will allow potential malicious activities to be performed under my account. So please keep my credentials secret :sob::sob::sob:.
 
 ### Installation
 
-Just simply download this repo then move the `env` into the directory, after that open PowerShell and activate the environment
+Just download this repo then move the `env` into the directory, after that open PowerShell and activate the environment
 
 ```shell
 env/Scripts/activate
@@ -67,16 +67,16 @@ Finally, move the `credentials.json` into `auth/`
 
 [Example](https://docs.google.com/spreadsheets/d/1UT_GerjzJCv7Bu_MnEMHZUr533mF3xe0W0rMiUlHnq4/edit#gid=650366501)
 
-- Every delegate should have their own unique identifier.
-- The delegates' identifier and their attendance cell should locate on the same row.
+- Every delegate should have a unique identifier.
+- The delegates' identifier and attendance cell should be on the same row.
 - No merged cells should be in the delegates' row.
 
 #### Delegate's info sheet
 
 - Name always be in the first column (A).
-- Identifier always be in second column (B).
+- Identifier always be in the second column (B).
 - No merged cells should be in the delegates' row.
-- Anything can be put after these column as they will be ignored.
+- Anything can be put after these columns as they will be ignored.
 
 ### Initial configuration
 
@@ -111,11 +111,11 @@ The attributes within `"attendance": {...}`.
 |-------------------|----------------------------------------------------------|
 | page              | The name of the sheet where the attendance is located    |
 | register_column   | The column in which attendance will be marked            |
-| identifier_column | The column in which the delegates' identifier are placed |
+| identifier_column | The column in which the delegates' identifiers are placed |
 | start_row         | The row containing the first delegate                    |
 
 Example:  
-To configure the program for registrating Room 1 in the example, the configuration file should look as follows:
+To configure the program for registration Room 1 in the example, the configuration file should look as follows:
 
 ```json
 "attendance": {
@@ -161,7 +161,7 @@ To configure the program to extract data in the example, the configuration file 
 
 3. If it is your first time running, a Google sign-in prompt may open. Make sure to sign in with the account that has access to your attendance spreadsheet.
 
-4. As one scan their QR, a green frame will be drawn around it if login successful as well as their identifier appearing in green underneath.
+4. As one scans their QR, a green frame will be drawn around it if login is successful as well as their identifier appearing in green underneath.
   ![successful scan](images/scanSuccess.jpg)
 
 5. Once all the delegates have registered, close the window then wait for the program to sync the data with the Google Sheets.
@@ -170,9 +170,9 @@ To configure the program to extract data in the example, the configuration file 
 
 **Sign in with the wrong Google Account?** Delete the `auth/token.json` then run `src/main.py` again.
 > [!CAUTION]  
-> Again, do not share this token to anyone (same reason as credentials).
+> Again, do not share this token with anyone (same reason as credentials).
 
-**QR code not registering?** Make sure the QR code is perpendicular to the camera and lighting is neither too dark nor too bright.
+**QR code not registering?** Make sure the QR code is perpendicular to the camera and the lighting is neither too dark nor too bright.
 
 **Running scripts is disabled on this system ERROR?** Open PowerShell as Administrator then type
 
@@ -182,7 +182,7 @@ Set-ExecutionPolicy -ExecutionPolicy RemoteSigned
 
 ## Credits
 
-Program made for BISHCMC MUN club.
+A program made for the BISHCMC MUN club.
 
 Idea proposal: Henry Bui  
 Developer: Gia Phu
