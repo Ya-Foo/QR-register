@@ -19,6 +19,12 @@
 
 ![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54)  
 
+To run any Python file in the PowerShell:
+
+```shell
+python PATH/TO/PYTHON/file.py
+```
+
 ## Getting started
 
 ### Prerequisites
@@ -86,13 +92,14 @@ name, [...], identifier
 
 Find `src/config.json` which contains all the configuration of the program.
 
-- camera_id: 0 (default) for webcam or 1 for back cam
-- sheets_id: The ID of the Google Sheets used for attendance
-  ![sheets id](images/sheetsID.jpg)
-- page: The name of the sheet where the attendance is located
-- register_column: The column in which attendance will be marked
-- identifier_column: The column in which the delegates' identifier are placed
-- start_row: The row containing the first delegate  
+| Value             | Meaning                                                  |
+|-------------------|----------------------------------------------------------|
+| camera_id         | 0 (default) for webcam or 1 for back cam                 |
+| sheets_id         | The ID of the Google Sheets used for attendance          |
+| page              | The name of the sheet where the attendance is located    |
+| register_column   | The column in which attendance will be marked            |
+| identifier_column | The column in which the delegates' identifier are placed |
+| start_row         | The row containing the first delegate                    |
 
 Example:
 To configure the program for registrating Room 1 in this [Google Sheets](https://docs.google.com/spreadsheets/d/1UT_GerjzJCv7Bu_MnEMHZUr533mF3xe0W0rMiUlHnq4/edit#gid=0), the configuration file should look as follows:
