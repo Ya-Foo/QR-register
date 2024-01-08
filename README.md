@@ -80,10 +80,6 @@ name, [...], identifier
 
 3. Run `src/qrCreate.py`.
 
-   ```shell
-   python src/qrCreate.py
-   ```
-
 4. Delete `qrcodes/a.txt` file.
 
 ### Initial configuration
