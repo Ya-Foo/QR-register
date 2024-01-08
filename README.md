@@ -48,9 +48,7 @@ python PATH/TO/PYTHON/file.py
 Just simply download this repo then move the `env` into the directory, after that open PowerShell and activate the environment
 
 ```shell
-cd env
-Scripts/activate
-cd ..
+env/Scripts/activate
 ```
 
 Then install the necessary libraries
@@ -170,11 +168,17 @@ To configure the program to extract data in the example, the configuration file 
 
 ## Troubleshooting
 
-Sign in with the wrong Google Account? Delete the `auth/token.json` then run `src/main.py` again.
+**Sign in with the wrong Google Account?** Delete the `auth/token.json` then run `src/main.py` again.
 > [!CAUTION]  
 > Again, do not share this token to anyone (same reason as credentials).
 
-QR code not registering? Make sure the QR code is perpendicular to the camera and lighting is neither too dark nor too bright.
+**QR code not registering?** Make sure the QR code is perpendicular to the camera and lighting is neither too dark nor too bright.
+
+**Running scripts is disabled on this system ERROR?** Open PowerShell as Administrator then type
+
+```shell
+Set-ExecutionPolicy -ExecutionPolicy RemoteSigned
+```
 
 ## Credits
 
