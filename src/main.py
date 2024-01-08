@@ -103,11 +103,12 @@ creds = utl.auth()
 members = utl.get_values(creds, SPREADSHEET_ID, EMAILS)["values"]
 registered = len(scanned)
 
-print(f"{registered} were registered")
+print(f"{registered} were registered\n")
 index = 1
 for i in members:
     cell = TARGET_COL + str(START_ROW)
     if i[0] in scanned:
         utl.write_values(creds, SPREADSHEET_ID, cell, 'USER_ENTERED')
         print(f"{index}/{registered} cells updated")
+        index += 1
     START_ROW += 1

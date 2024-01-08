@@ -7,9 +7,9 @@
   - [Installation](#installation)
 - [Usage](#usage)
   - [Creating QR codes](#creating-qr-codes)
-  - [Formatting the Google Sheets](#formatting-the-google-sheets)
   - [Initial configuration](#initial-configuration)
   - [Scanning the QR](#scanning-the-qr)
+- [Example usage](#example-usage)
 - [Troubleshooting](#troubleshooting)
 
 ## Built with<!-- omit from toc -->
@@ -20,16 +20,16 @@
 
 ### Prerequisites
 
-- OAuth credentials - obtain from [me](ghuynh2@bisvietnam.com)
-
-> [!CAUTION]  
-> Sharing the credentials will allow potential malicious activites to be performed under your account. So please keep my credentials secret :sob::sob::sob:
-
 - Virtual Environment
   
   ```shell
   python -m venv env
   ```
+
+- OAuth credentials - obtain from [me](ghuynh2@bisvietnam.com)
+
+> [!CAUTION]  
+> Sharing the credentials will allow potential malicious activites to be performed under your account. So please keep my credentials secret :sob::sob::sob:
 
 ### Installation
 
@@ -53,8 +53,8 @@ python -m pip install -r requirements.txt
 
 1. From your spreadsheets app, download the list of delegates name and their email as `delegatesInfo.csv`
 
-> [!IMPORTANT]  
-> As long as the names are in the first column and the emails are in the last column, then the program will successfully import the data. Anything in the middle will be ignored.  
+    > [!IMPORTANT]  
+    > As long as the names are in the first column and the emails are in the last column, then the program will successfully import the data. Anything in the middle will be ignored.  
 
 2. Move the file into `QR-register/`
 
@@ -66,17 +66,13 @@ python -m pip install -r requirements.txt
 
 4. Delete `qrcodes/a.txt` file
 
-### Formatting the Google Sheets
-
-Just ensure that the delegate's email and their attendance cell are both located on the same row
-
 ### Initial configuration
 
 Find `src/config.json` which contains all the configuration of the program.
 
 - camera_id: 0 (default) for webcam or 1 for back cam
 - sheets_id: The ID of the Google Sheets used for attendance
-  ![sheets id](images/sheetsID.png)
+  ![sheets id](images/sheetsID.jpg)
 - register_column: The column in which attendance will be marked
 - mail_column: The column in which the delegates' mail are placed
 - start_row: The row containing the first delegate  
@@ -93,6 +89,9 @@ An example configuration might look like
 }
 ```
 
+> [!NOTE]  
+> In the Google Sheets, please ensure that the delegate's email and their attendance cell are both located on the same row.
+
 ### Scanning the QR
 
 1. Move `credentials.json` into `QR-register/auth/`
@@ -105,9 +104,11 @@ An example configuration might look like
 
 5. Once all the delegates have registered, close the window then wait for the program to sync the data with the Google Sheets
 
+## Example usage
+
 ## Troubleshooting
 
-Sign in with the wrong Google Account? Delete the `auth/token.json` then run `src/main.py` again 
+Sign in with the wrong Google Account? Delete the `auth/token.json` then run `src/main.py` again
 > [!CAUTION]  
 > Again, do not share this token to anyone (same reason as credentials)
 
