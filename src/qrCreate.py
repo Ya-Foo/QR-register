@@ -9,8 +9,6 @@ parent_dir = os.getcwd()
 directory = "qrcodes"
 path = os.path.join(parent_dir, directory)
 
-os.mkdir(path)
-
 alreadyMembers = [f.split('.')[0] for f in os.listdir(path) if f.split('.')[1] == "png"]
 
 with open("src/config.json", "r") as f:
