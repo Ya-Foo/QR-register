@@ -1,10 +1,17 @@
 import segno
-import utilities as utl
 import json
-from os import listdir, getcwd
+import os
+
+import api
 
 
-alreadyMembers = [f.split('.')[0] for f in listdir(fr"{getcwd()}/qrcodes") if f.split('.')[1] == "png"]
+parent_dir = os.getcwd()
+directory = "qrcodes"
+path = os.path.join(parent_dir, directory)
+
+os.mkdir(path)
+
+alreadyMembers = [f.split('.')[0] for f in os.listdir(path) if f.split('.')[1] == "png"]
 
 with open("src/config.json", "r") as f:
     data = json.loads(f.read())
@@ -14,11 +21,11 @@ with open("src/config.json", "r") as f:
     PAGE = SETTINGS["page"]
     START_ROW = SETTINGS["start_row"]
 
-IDENTIFIERS = f"'{PAGE}'!A{str(START_ROW)}:B1000"
+RANGE = f"'{PAGE}'!A{str(START_ROW)}:B1000"
 
-creds = utl.auth()
+creds = api.auth()
 
-members = utl.get_values(creds, SPREADSHEET_ID, IDENTIFIERS)
+members = api.get_values(creds, SPREADSHEET_ID, RANGE)
 
 new_members = len(members)-len(alreadyMembers)
 
@@ -39,7 +46,7 @@ if new_members:
             img = segno.make_qr(identifier)
 
             img.save(
-                fr'qrcodes/{name}.png',
+                f'qrcodes/{name}.png',
                 scale=10,
                 border=1,
             )

@@ -1,8 +1,9 @@
 import tkinter as tk
-import utilities as utl
 import cv2
 import json
 from PIL import Image, ImageTk
+
+import api
 
 
 class WebcamApp:
@@ -101,9 +102,9 @@ with open("src/config.json", "r") as f:
 
 IDENTIFIERS = f"'{PAGE}'!{IDENTIFIER_COL}{str(START_ROW)}:{IDENTIFIER_COL}1000"
 
-creds = utl.auth()
+creds = api.auth()
 
-members = utl.get_values(creds, SPREADSHEET_ID, IDENTIFIERS)
+members = api.get_values(creds, SPREADSHEET_ID, IDENTIFIERS)
 registered = len(scanned)
 
 if registered:
@@ -115,7 +116,7 @@ if registered:
         
         # If registered, then mark attendance
         if i[0] in scanned:
-            utl.write_values(creds, SPREADSHEET_ID, cell, 'USER_ENTERED')
+            api.write_values(creds, SPREADSHEET_ID, cell, 'USER_ENTERED')
             
             print(f"\t{index}/{registered} cells updated")
             index += 1
