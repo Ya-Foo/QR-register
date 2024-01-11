@@ -48,5 +48,6 @@ if new_members:
                 scale=10,
                 border=1,
             )
+    os.remove("qrcodes/a.txt")
         
 print("\nProcess finished")
