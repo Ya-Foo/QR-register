@@ -10,7 +10,7 @@ from PIL import Image, ImageTk
 
 
 ctk.set_appearance_mode("Dark")
-ctk.set_default_color_theme("blue")  # Themes: "blue" (standard), "green", "dark-blue"
+ctk.set_default_color_theme("blue")
 
 class App(ctk.CTk):
     def __init__(self):
@@ -90,6 +90,9 @@ class App(ctk.CTk):
         self.totalScanned = ctk.CTkLabel(self.allINFO, text="Total scanned: ", font=("Consolas", 18))
         self.totalScanned.grid(row=0, column=0, sticky="w", padx=10, pady=10)
         ctk.CTkLabel(self.allINFO, text="Status: ", font=("Consolas", 18)).grid(row=1, column=0, sticky="w", padx=10, pady=10)
+        self.allINFO.grid_rowconfigure(2, weight=5)
+        self.status = ctk.CTkLabel(self.allINFO, text="", font=("Consolas", 14))
+        self.status.grid(row=2, column=0, padx=10, pady=10)
         
         self.register_button = ctk.CTkButton(self.right_frame, text="Save and Register", command=self.save, font=("Consolas", 18), width=250, height=50)
         self.register_button.grid(row=0, column=0)
@@ -158,17 +161,19 @@ class App(ctk.CTk):
 
         if registered:
             index = 1
+            registerStatus = ""
             for i in members:
                 cell = f"'{PAGE}'!{TARGET_COL}{str(START_ROW)}"
                 
                 # If registered, then mark attendance
                 if i[0] in self.scanned:
                     api.write_values(creds, SPREADSHEET_ID, cell, 'USER_ENTERED')
-                    self.allINFO.grid_rowconfigure(index+1, weight=1)
-                    ctk.CTkLabel(self.allINFO, text=f"Registering {i[0]}......{index}/{registered}", font=("Consolas", 14)).grid(row=index+1, column=0, padx=10, pady=10)
+                    registerStatus += "Registering {i[0]}......{index}/{registered}\n"
+                    self.status.configure(text=registerStatus)
                     index += 1
                     
                 START_ROW += 1
+                
             ctk.CTkLabel(self.allINFO, text="You can close this window now.", font=("Consolas", 18)).grid(row=index+1, column=0, padx=10, pady=10)
         else:
             ctk.CTkLabel(self.allINFO, text="No one attended :(", font=("Consolas", 14)).grid(row=2, column=0, padx=10, pady=10)
