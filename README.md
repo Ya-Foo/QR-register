@@ -57,7 +57,7 @@ Then install the necessary libraries
 python -m pip install -r requirements.txt
 ```
 
-Finally, move the `credentials.json` into `auth/`
+Finally, move the `credentials.json` into `auth/` and delete `sample.json`
 
 ## Usage
 
@@ -151,24 +151,21 @@ To configure the program to extract data in the example, the configuration file 
 
 2. Wait for it to finish.
 
-3. Delete `qrcodes/a.txt` file.
+3. The results will be saved in `qrcodes/`.
 
 ### Scanning the QR
 
-1. Move `credentials.json` into `QR-register/auth/`.
+1. Run `src/register.py`.
 
-2. Run `src/main.py`.
+2. If it is your first time running, a Google sign-in prompt may open. Make sure to sign in with the account that has access to your attendance spreadsheet.
 
-3. If it is your first time running, a Google sign-in prompt may open. Make sure to sign in with the account that has access to your attendance spreadsheet.
+3. As one scans their QR, a green frame will be drawn around it if the QR code is detected. Their infomation (Identifier, Name, Country) will also be shown underneath.
 
-4. As one scans their QR, a green frame will be drawn around it if login is successful as well as their identifier appearing in green underneath.
-  ![successful scan](images/scanSuccess.jpg)
-
-5. Once all the delegates have registered, close the window then wait for the program to sync the data with the Google Sheets.
+4. Once all the delegates have registered, press `Save and Register` then wait for the program to sync the data with the Google Sheets.
 
 ## Troubleshooting
 
-**Sign in with the wrong Google Account?** Delete the `auth/token.json` then run `src/main.py` again.
+**Sign in with the wrong Google Account?** Delete the `auth/token.json` then run `src/register.py` again.
 > [!CAUTION]  
 > Again, do not share this token with anyone (same reason as credentials).
 
