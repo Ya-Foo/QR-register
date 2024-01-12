@@ -174,7 +174,8 @@ class App(ctk.CTk):
                     
                 START_ROW += 1
                 
-            ctk.CTkLabel(self.allINFO, text="You can close this window now.", font=("Consolas", 18)).grid(row=index+1, column=0, padx=10, pady=10)
+            self.status.configure(text="You can close this window now.")
+            
         else:
             ctk.CTkLabel(self.allINFO, text="No one attended :(", font=("Consolas", 14)).grid(row=2, column=0, padx=10, pady=10)
 
