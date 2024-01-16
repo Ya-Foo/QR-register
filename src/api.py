@@ -26,6 +26,9 @@ def auth():
             # Save the credentials
             with open("auth/token.json", "w") as token:
                 token.write(creds.to_json())
+     
+    if os.path.exists("auth/sample.json"):
+        os.remove("auth/sample.json")
     
     return creds
 

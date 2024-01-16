@@ -13,8 +13,9 @@
     - [Global values](#global-values)
     - [Attendance](#attendance)
     - [Delegates' info](#delegates-info)
-  - [Creating QR codes](#creating-qr-codes)
-  - [Scanning the QR](#scanning-the-qr)
+  - [Running the application](#running-the-application)
+    - [Creating QR codes](#creating-qr-codes)
+    - [Scanning the QR](#scanning-the-qr)
 - [Troubleshooting](#troubleshooting)
 - [Credits](#credits)
 
@@ -75,8 +76,8 @@ All examples can be found in this [Google Sheets](https://docs.google.com/spread
 
 #### Delegate's info sheet
 
-- Name always be in the first column (A).
-- Identifier always be in the second column (B).
+- Identifier always be in the first column (A).
+- Name always be in the second column (B).
 - No merged cells should be in the delegates' row.
 - Anything can be put after these columns as they will be ignored.
 
@@ -145,23 +146,23 @@ To configure the program to extract data in the example, the configuration file 
 }
 ```
 
-### Creating QR codes
+### Running the application
 
-1. Run `src/qrCreate.py`.
+Run `src/main.py`
 
-2. Wait for it to finish.
+#### Creating QR codes
 
-3. The results will be saved in `qrcodes/`.
+1. Click on button that says 'Create QR codes'.
 
-### Scanning the QR
+2. The results will be saved in `qrcodes/`.
 
-1. Run `src/register.py`.
+3. If it is your first time running, a Google sign-in prompt may open. Make sure to sign in with the account that has access to your attendance spreadsheet.
 
-2. If it is your first time running, a Google sign-in prompt may open. Make sure to sign in with the account that has access to your attendance spreadsheet.
+#### Scanning the QR
 
-3. As one scans their QR, a green frame will be drawn around it if the QR code is detected. Their infomation (Identifier, Name, Country) will also be shown underneath.
+1. As one scans their QR, a green frame will be drawn around it if the QR code is detected. Their infomation (Identifier, Name, Country) will also be shown underneath.
 
-4. Once all the delegates have registered, press `Save and Register` then wait for the program to sync the data with the Google Sheets.
+2. Once all the delegates have registered, click on button that says `Save and Register` then wait for the program to sync the data with the Google Sheets.
 
 ## Troubleshooting
 
