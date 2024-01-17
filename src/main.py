@@ -105,12 +105,12 @@ class App(ctk.CTk):
         self.totalScanned.grid(row=0, column=0, sticky="nsw", pady=(25, 15), padx=25)
         
         ctk.CTkLabel(self.register_frame, text="Register status: ", font=("Consolas", 18)).grid(row=1, column=0, sticky="nsw", pady=(15, 10), padx=25)
-        self.register_status = ctk.CTkLabel(self.register_frame, text="\t", font=("Consolas", 18))
-        self.register_status.grid(row=2, column=0, sticky="nsw", pady=(0,15), padx=25)
+        self.register_status = ctk.CTkLabel(self.register_frame, text="", font=("Consolas", 18))
+        self.register_status.grid(row=2, column=0, sticky="nsw", pady=(0,15), padx=55)
         
         ctk.CTkLabel(self.register_frame, text="QR create status: ", font=("Consolas", 18)).grid(row=3, column=0, sticky="nsw", pady=(15, 10), padx=25)
-        self.qr_status = ctk.CTkLabel(self.register_frame, text="\t", font=("Consolas", 18))
-        self.qr_status.grid(row=4, column=0, sticky="nsw", pady=(0,25), padx=25)
+        self.qr_status = ctk.CTkLabel(self.register_frame, text="", font=("Consolas", 18))
+        self.qr_status.grid(row=4, column=0, sticky="nsw", pady=(0,25), padx=55)
         self.qr_count = 0        # To count how many QRs have been created
         
         
@@ -163,7 +163,7 @@ class App(ctk.CTk):
                 # If registered, then mark attendance
                 if ROOM_MEMBERS[self.register_count] in self.scanned:
                     api.write_values(creds, SPREADSHEET_ID, cell, 'USER_ENTERED')
-                    self.register_status.configure(text=f"\t[{["x", "+"][self.register_index%2]}] Registering {self.register_index}/{registered}")
+                    self.register_status.configure(text=f"[{loading[self.register_index%4]}] Registering {self.register_index}/{registered}")
                     self.register_index += 1
                     
                 A_START_ROW += 1
@@ -176,27 +176,29 @@ class App(ctk.CTk):
             self.register_count += 1
 
     def create(self):
+        OG_MEMBERS = [f.split('.')[0] for f in os.listdir(path) if f.split('.')[-1] == "png"]
+        NEW_MEMBERS = {}
+        for identifier, name in MEMBERS_INFO.items():
+            if name not in OG_MEMBERS:
+                NEW_MEMBERS[identifier] = name
         new = len(NEW_MEMBERS)
-        if self.qr_count < new:
-            identifier = list(NEW_MEMBERS.keys())[self.qr_count]
-            name = NEW_MEMBERS[identifier]
-            
-            img = segno.make_qr(identifier)
+        if new:
+            if self.qr_count < new:
+                identifier = list(NEW_MEMBERS.keys())[self.qr_count]
+                name = NEW_MEMBERS[identifier]
+                
+                img = segno.make_qr(identifier)
 
-            img.save(
-                f'qrcodes/{name}.png',
-                scale=10,
-                border=1,
-            )
-            
-            self.qr_status.after(10, self.create)
-            self.qr_status.configure(text=f"\t[{["x", "+"][self.qr_count%2]}] Creating {self.qr_count+1}/{new}")
-            self.qr_count += 1
-            
+                img.save(f'qrcodes/{name}.png',scale=10,border=1)
+                
+                self.qr_status.after(10, self.create)
+                self.qr_status.configure(text=f"[{loading[self.qr_count%4]}] Creating {self.qr_count+1}/{new}")
+                self.qr_count += 1
+                
+            else:
+                self.qr_count = 0
         else:
             self.qr_status.configure(text="No new members detected")
-            self.qr_count = 0
-        
 
 if __name__ == "__main__":
     # Extract config
@@ -223,6 +225,7 @@ if __name__ == "__main__":
     creds = api.auth()
     
     # Constants
+    loading = ["-", "/", "-", "\\"]
     MEMBERS_INFO = {}
     for identifier, name in api.get_values(creds, SPREADSHEET_ID, I_IDENTIFIERS):
         MEMBERS_INFO[identifier] = name
@@ -233,12 +236,6 @@ if __name__ == "__main__":
     path = os.path.join(parent_dir, directory)
     if not os.path.exists(directory):
         os.mkdir(path)
-
-    OG_MEMBERS = [f.split('.')[0] for f in os.listdir(path) if f.split('.')[-1] == "png"]
-    NEW_MEMBERS = {}
-    for identifier, name in MEMBERS_INFO.items():
-        if name not in OG_MEMBERS:
-            NEW_MEMBERS[identifier] = name
     
     # Main app
     app = App()
