@@ -58,7 +58,7 @@ Then install the necessary libraries
 python -m pip install -r requirements.txt
 ```
 
-Finally, move the `credentials.json` into `auth/` and delete `sample.json`
+Finally, move the `credentials.json` into `auth/`.
 
 ## Usage
 
@@ -67,8 +67,6 @@ Finally, move the `credentials.json` into `auth/` and delete `sample.json`
 All examples can be found in this [Google Sheets](https://docs.google.com/spreadsheets/d/1UT_GerjzJCv7Bu_MnEMHZUr533mF3xe0W0rMiUlHnq4/edit#gid=0).
 
 #### Attendance sheet
-
-[Example](https://docs.google.com/spreadsheets/d/1UT_GerjzJCv7Bu_MnEMHZUr533mF3xe0W0rMiUlHnq4/edit#gid=650366501)
 
 - Every delegate should have a unique identifier.
 - The delegates' identifier and attendance cell should be on the same row.
@@ -148,7 +146,7 @@ To configure the program to extract data in the example, the configuration file 
 
 ### Running the application
 
-Run `src/main.py`
+Run `src/main.py`. If it is your first time running, a Google sign-in prompt may open. Make sure to sign in with the account that has access to your attendance spreadsheet.
 
 #### Creating QR codes
 
@@ -156,11 +154,9 @@ Run `src/main.py`
 
 2. The results will be saved in `qrcodes/`.
 
-3. If it is your first time running, a Google sign-in prompt may open. Make sure to sign in with the account that has access to your attendance spreadsheet.
-
 #### Scanning the QR
 
-1. As one scans their QR, a green frame will be drawn around it if the QR code is detected. Their infomation (Identifier, Name, Country) will also be shown underneath.
+1. As one scans their QR, a green frame will be drawn around it if the QR code is detected. Their infomation (Identifier, Name) will also be shown underneath.
 
 2. Once all the delegates have registered, click on button that says `Save and Register` then wait for the program to sync the data with the Google Sheets.
 
