@@ -58,7 +58,7 @@ Then install the necessary libraries
 python -m pip install -r requirements.txt
 ```
 
-Finally, move the `credentials.json` into `auth/`.
+Finally, create `auth/` then move the `credentials.json` into it.
 
 ## Usage
 
@@ -174,9 +174,15 @@ Run `src/main.py`. If it is your first time running, a Google sign-in prompt may
 Set-ExecutionPolicy -ExecutionPolicy RemoteSigned
 ```
 
+**Credentials expired (estimated after 1 month)?** Contact me and I'll give you a renewed credentials. Delete everything in `auth/` and place the new `credentials.json` into it.
+
 ## Credits
 
 A program made for the BISHCMC MUN club.
 
+![insert school mun logo]()
+
 Idea proposal: Henry Bui  
 Developer: Gia Phu
+
+Any miscredit will result in the termination of this program (it is much simpler than yall think)
