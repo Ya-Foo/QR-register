@@ -176,11 +176,6 @@ class App(ctk.CTk):
             self.register_count += 1
 
     def create(self):
-        OG_MEMBERS = [f.split('.')[0] for f in os.listdir(path) if f.split('.')[-1] == "png"]
-        NEW_MEMBERS = {}
-        for identifier, name in MEMBERS_INFO.items():
-            if name not in OG_MEMBERS:
-                NEW_MEMBERS[identifier] = name
         new = len(NEW_MEMBERS)
         if new:
             if self.qr_count < new:
@@ -236,6 +231,12 @@ if __name__ == "__main__":
     path = os.path.join(parent_dir, directory)
     if not os.path.exists(directory):
         os.mkdir(path)
+        
+    OG_MEMBERS = [f.split('.')[0] for f in os.listdir(path) if f.split('.')[-1] == "png"]
+    NEW_MEMBERS = {}
+    for identifier, name in MEMBERS_INFO.items():
+        if name not in OG_MEMBERS:
+            NEW_MEMBERS[identifier] = name
     
     # Main app
     app = App()

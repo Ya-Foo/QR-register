@@ -32,3 +32,4 @@ venv.bak/
 
 # Not gonna publicise this
 auth/
+**/qrcodes
