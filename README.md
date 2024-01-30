@@ -46,7 +46,7 @@ python PATH/TO/PYTHON/file.py
 
 ### Installation
 
-Just download this repo then move the `env` into the directory, after that open PowerShell and activate the environment
+Just download this repo as `.zip` and extract it. Then move the `env` into the directory, after that open PowerShell and activate the environment
 
 ```shell
 env/Scripts/activate
