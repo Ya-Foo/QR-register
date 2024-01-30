@@ -167,9 +167,10 @@ class App(ctk.CTk):
                     self.register_index += 1
                     
                 A_START_ROW += 1
-            
-            else:
+                
+            elif registered == 0:
                 self.register_status.configure(text="No members scanned")
+            else:
                 self.register_count = 0
 
             self.register_status.after(100, self.save)
