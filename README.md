@@ -5,6 +5,7 @@
 - [Getting started](#getting-started)
   - [Prerequisites](#prerequisites)
   - [Installation](#installation)
+  - [Updates](#updates)
 - [Usage](#usage)
   - [File formatting](#file-formatting)
     - [Attendance sheet](#attendance-sheet)
@@ -59,6 +60,10 @@ python -m pip install -r requirements.txt
 ```
 
 Finally, create `auth/` then move the `credentials.json` into it.
+
+### Updates
+
+When announced, just go back to this page and re-follow [installation guide](https://github.com/Ya-Foo/QR-register?tab=readme-ov-file#installation).
 
 ## Usage
 
