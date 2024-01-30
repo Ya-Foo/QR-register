@@ -8,7 +8,7 @@ from googleapiclient.errors import HttpError
 
 def auth():
     SCOPES = ["https://www.googleapis.com/auth/spreadsheets"]
-
+        
     creds = None
     # token.json stores the user's access and refresh tokens, and auto-created 
     # when authorization flow completes for the 1st time.
@@ -26,9 +26,6 @@ def auth():
             # Save the credentials
             with open("auth/token.json", "w") as token:
                 token.write(creds.to_json())
-     
-    if os.path.exists("auth/sample.json"):
-        os.remove("auth/sample.json")
     
     return creds
 
