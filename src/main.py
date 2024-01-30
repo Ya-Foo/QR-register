@@ -188,10 +188,10 @@ class App(ctk.CTk):
                 
                 self.qr_status.after(10, self.create)
                 self.qr_status.configure(text=f"[{loading[self.qr_count%4]}] Creating {self.qr_count+1}/{new}")
-                self.qr_count += 1
                 
             else:
                 self.qr_count = 0
+            self.qr_count += 1
         else:
             self.qr_status.configure(text="No new members detected")
 
