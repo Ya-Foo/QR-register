@@ -168,12 +168,10 @@ class App(ctk.CTk):
                     
                 A_START_ROW += 1
                 
-            elif registered == 0:
-                self.register_status.configure(text="No members scanned")
             else:
                 self.register_count = 0
 
-            self.register_status.after(100, self.save)
+            self.register_status.after(0, self.save)
             self.register_count += 1
 
     def create(self):
@@ -187,7 +185,7 @@ class App(ctk.CTk):
 
                 img.save(f'qrcodes/{name}.png',scale=10,border=1)
                 
-                self.qr_status.after(10, self.create)
+                self.qr_status.after(0, self.create)
                 self.qr_status.configure(text=f"[{loading[self.qr_count%4]}] Creating {self.qr_count+1}/{new}")
                 
             else:
