@@ -181,7 +181,7 @@ class App(ctk.CTk):
         if new:
             if self.qr_count < new:
                 identifier = list(NEW_MEMBERS.keys())[self.qr_count]
-                name = NEW_MEMBERS[identifier]
+                name = NEW_MEMBERS[identifier].rstrip()
                 
                 img = segno.make_qr(identifier)
 
@@ -221,7 +221,7 @@ if __name__ == "__main__":
     creds = api.auth()
     
     # Constants
-    loading = ["-", "/", "-", "\\"]
+    loading = ["-", "\\", "|", "/"]
     MEMBERS_INFO = {}
     for identifier, name in api.get_values(creds, SPREADSHEET_ID, I_IDENTIFIERS):
         MEMBERS_INFO[identifier] = name
