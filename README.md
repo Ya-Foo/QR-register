@@ -1,5 +1,9 @@
 # QR-register<!-- omit from toc -->
 
+## NOTICE!
+
+This repo is only a very early prototype to prove the concept of [MUN Register](https://github.com/Ya-Foo/MUN-register). As the prototyping process has finished, this repo will be moved to the Archive.
+
 ## Table of Contents<!-- omit from toc -->
 
 - [Getting started](#getting-started)
